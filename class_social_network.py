@@ -39,7 +39,10 @@ class PandaSocialNetwork:
             return False
 
     def friends_of(self, panda):
-        pass
+        if panda in SOCIAL_NETWORK:
+            return SOCIAL_NETWORK[panda]
+        else:
+            return False
 
     def save(self, filename):
         pass
