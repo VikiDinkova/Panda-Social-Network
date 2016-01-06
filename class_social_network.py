@@ -26,3 +26,9 @@ class PandaSocialNetwork:
 
     def friends_of(self, panda):
         pass
+
+    def save(self, filename):
+        pass
+
+    def load(self, filename):
+        pass
