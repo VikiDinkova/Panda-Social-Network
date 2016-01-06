@@ -1,3 +1,5 @@
+from panda import Panda
+
 SOCIAL_NETWORK = {}
 
 
@@ -19,10 +21,17 @@ class PandaSocialNetwork:
             return False
 
     def make_friends(self, panda1, panda2):
-        pass
+        if self.are_friends(panda1, panda2):
+            return True
+        else:
+            SOCIAL_NETWORK[panda1].append(panda2)  # несъм сигорен дали е така
+            SOCIAL_NETWORK[panda2].append(panda1)
 
     def are_friends(self, panda1, panda2):
-        pass
+        if panda1 in SOCIAL_NETWORK[panda2]:
+            return True
+        else:
+            return False
 
     def friends_of(self, panda):
         pass
