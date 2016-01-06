@@ -1,13 +1,14 @@
 class Panda:
     def __init__(self, name, email, gender):
-        if not self._check_email(email):
+        if not Panda._check_email(email):
             assert (self._check_email(email) is False)
             email = input("wrong email\nemail:")
         self._name = name
         self._email = email
         self._gender = gender
 
-    def _check_email(self, stri):
+    @staticmethod
+    def _check_email(stri):
         return "@pandamail.com" in stri
 
     def __str__(self):
