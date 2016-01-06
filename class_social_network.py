@@ -21,11 +21,16 @@ class PandaSocialNetwork:
             return False
 
     def make_friends(self, panda1, panda2):
-        if self.are_friends(panda1, panda2):
-            return True
+        if not self.has_panda(panda1):  #
+            self.add_panda(panda1)
+        elif not self.has_panda(panda2):
+            self.add_panda(panda2)
         else:
-            SOCIAL_NETWORK[panda1].append(panda2)  # несъм сигорен дали е така
-            SOCIAL_NETWORK[panda2].append(panda1)
+            if self.are_friends(panda1, panda2):
+                return "Pandas are alredy friends"
+            else:
+                SOCIAL_NETWORK[panda1].append(panda2)  # не съм сигорен дали е така
+                SOCIAL_NETWORK[panda2].append(panda1)
 
     def are_friends(self, panda1, panda2):
         if panda1 in SOCIAL_NETWORK[panda2]:
