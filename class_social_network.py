@@ -1,4 +1,5 @@
 from panda import Panda
+from collections import deque
 
 SOCIAL_NETWORK = {}
 
@@ -29,7 +30,7 @@ class PandaSocialNetwork:
             if self.are_friends(panda1, panda2):
                 return "Pandas are alredy friends"
             else:
-                SOCIAL_NETWORK[panda1].append(panda2)  # не съм сигорен дали е така
+                SOCIAL_NETWORK[panda1].append(panda2)  # не съм сигурен дали е така
                 SOCIAL_NETWORK[panda2].append(panda1)
 
     def are_friends(self, panda1, panda2):
@@ -44,24 +45,26 @@ class PandaSocialNetwork:
         else:
             return False
 
-    def conection_level(self, panda1, panda2):
+    def connection_level(self, panda1, panda2):
         self.level = 0
-        deque = deque()
+        deque2 = deque()
         visit = set()
 
-        deque.append(panda1)
+        deque2.append(panda1)
         visit.append(panda1)
-        while deque != []:
+        while deque2 != []:
             for neighb in SOCIAL_NETWORK[panda1]:
                 if neighb == panda2:
                     self.level += 1
                     return self.level
                 else:
-                    if SOCIAL_NETWORK[neighb] not in visit:
-                        deque.append(SOCIAL_NETWORK[neighb])
-                        if SOCIAL_NETWORK[neighb] != panda2:
-                            visit.append(neighb)
-                            deque.popleft()
+                    for nei in SOCIAL_NETWORK[neighb]:
+                        if nei not in visit:
+                            deque2.append(nei)
+                            if nei != panda2:
+                                visit.append(neighb)
+                                deque2.popleft()
+                                self.level += 1
 
     def are_connected(self, panda1, panda2):
         if self.level > 0:
