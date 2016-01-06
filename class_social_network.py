@@ -49,3 +49,15 @@ class PandaSocialNetwork:
 
     def load(self, filename):
         pass
+def main():
+    ivo = Panda("Ivo", "ivo@pandamail.com", "male")
+    rado = Panda("Rado", "rado@pandamail.com", "male")
+    network = PandaSocialNetwork()
+    for panda in [ivo, rado]:
+        network.add_panda(panda)
+
+    # network.make_friends(ivo, rado)
+    print(SOCIAL_NETWORK)
+
+if __name__ == '__main__':
+    main()
