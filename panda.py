@@ -17,11 +17,7 @@ class Panda:
         return self._name
 
     def __eq__(self, other):
-<<<<<<< HEAD
-        return self._name == other._name
-=======
         return self._name == other._name and self._email == other._email and self._gender == other._gender
->>>>>>> 07cb81b2705b143d061e7eb4a6525c3230991dc4
 
     def name(self):
         return self._name
