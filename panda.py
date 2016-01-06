@@ -17,7 +17,7 @@ class Panda:
         return self._name
 
     def __eq__(self, other):
-        return self._name == other._name
+        return self._name == other._name and self._email == other._email and self._gender == other._gender
 
     def name(self):
         return self._name
