@@ -1,21 +1,19 @@
 from panda import Panda
 
-SOCIAL_NETWORK = {}
-
 
 class PandaSocialNetwork:
 
     def __init__(self):
-        pass
+        self.social_network = {}
 
     def add_panda(self, panda):
         if self.has_panda(panda):
             return "This Panda already there"
         else:
-            SOCIAL_NETWORK[panda] = []
+            self.social_network[panda] = []
 
     def has_panda(self, panda):
-        if panda in SOCIAL_NETWORK:  # Проверка дали е в SN
+        if panda in self.social_network:  # Проверка дали е в SN
             return True
         else:
             return False
@@ -29,18 +27,18 @@ class PandaSocialNetwork:
             if self.are_friends(panda1, panda2):
                 return "Pandas are alredy friends"
             else:
-                SOCIAL_NETWORK[panda1].append(panda2)  # не съм сигорен дали е така
-                SOCIAL_NETWORK[panda2].append(panda1)
+                self.social_network[panda1].append(panda2)  # не съм сигорен дали е така
+                self.social_network[panda2].append(panda1)
 
     def are_friends(self, panda1, panda2):
-        if panda1 in SOCIAL_NETWORK[panda2]:
+        if panda1 in self.social_network[panda2]:
             return True
         else:
             return False
 
     def friends_of(self, panda):
-        if panda in SOCIAL_NETWORK:
-            return SOCIAL_NETWORK[panda]
+        if panda in self.social_network:
+            return self.social_network[panda]
         else:
             return False
 
@@ -56,8 +54,7 @@ def main():
     for panda in [ivo, rado]:
         network.add_panda(panda)
 
-    # network.make_friends(ivo, rado)
-    print(SOCIAL_NETWORK)
+    network.make_friends(ivo, rado)
 
 if __name__ == '__main__':
     main()
