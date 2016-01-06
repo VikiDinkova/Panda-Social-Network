@@ -42,6 +42,33 @@ class PandaSocialNetwork:
         else:
             return False
 
+    def conection_level(self, panda1, panda2):
+        self.level = 0
+        deque = deque()
+        visit = set()
+
+        deque.append(panda1)
+        visit.append(panda1)
+        while deque != []:
+            for neighb in SOCIAL_NETWORK[panda1]:
+                if neighb == panda2:
+                    self.level += 1
+                    return self.level
+                else:
+                    if SOCIAL_NETWORK[neighb] not in visit:
+                        deque.append(SOCIAL_NETWORK[neighb])
+                        if SOCIAL_NETWORK[neighb] != panda2:
+                            visit.append(neighb)
+                            deque.popleft()
+
+    def are_connected(self, panda1, panda2):
+        if self.level > 0:
+            return True
+        return False
+
+    def how_many_gender_in_network(level, panda, gender):
+        pass
+
     def save(self, filename):
         pass
 
