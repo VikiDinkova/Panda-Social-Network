@@ -1,4 +1,4 @@
-class Panda:
+    class Panda:
     def __init__(self, name, email, gender):
         if not Panda._check_email(email):
             assert (self._check_email(email) is False)
