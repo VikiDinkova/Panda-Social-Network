@@ -84,7 +84,7 @@ class PandaSocialNetwork:
                 counter += 1
         return counter
 
-
+    # TODO fix save method
     def save(self, filename):
         with open(filename, "w") as f:
             json.dump(str(self.social_network), f)
