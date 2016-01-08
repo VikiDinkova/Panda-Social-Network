@@ -67,9 +67,17 @@ class PandaSocialNetwork:
         return -1
 
     def are_connected(self, panda1, panda2):
-        if self.level > 0:
+        if self.connection_level(panda1, panda2) > 0:
             return True
         return False
+
+    def level_d(self):
+        level_dict = {}
+        for panda in SOCIAL_NETWORK:
+            level_dict[panda] = {}
+            for panda_fr in SOCIAL_NETWORK:
+                level_dict[panda][self.connection_level(panda, panda_fr)].append(panda_fr)
+        return level_dict
 
     def how_many_gender_in_network(level, panda, gender):
         pass
@@ -80,7 +88,6 @@ class PandaSocialNetwork:
     def load(self, filename):
         with open(filename, 'r') as f:
             pass
-
 
 
 def main():
@@ -94,4 +101,3 @@ def main():
 
 if __name__ == '__main__':
     main()
->>>>>>> 3abde1fa022975772c0015d32ad6854ce5b3ce0a
