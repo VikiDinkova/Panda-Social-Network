@@ -70,14 +70,20 @@ class PandaSocialNetwork:
 
     def level_d(self):
         level_dict = {}
-        for panda in SOCIAL_NETWORK:
+        for panda in self.social_network:
             level_dict[panda] = {}
-            for panda_fr in SOCIAL_NETWORK:
+            for panda_fr in self.social_network:
                 level_dict[panda][self.connection_level(panda, panda_fr)].append(panda_fr)
         return level_dict
 
-    def how_many_gender_in_network(level, panda, gender):
-        pass
+    def how_many_gender_in_network(self, level, panda, gender):
+        level_dict = self.level_d()
+        counter = 0
+        for friends in level_dict[panda][level]:
+            if friends.gender() == gender:
+                counter += 1
+        return counter
+
 
     def save(self, filename):
         with open(filename, "w") as f:
