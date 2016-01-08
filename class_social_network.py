@@ -72,8 +72,8 @@ class PandaSocialNetwork:
         pass
 
     def save(self, filename):
-        with open(self.filename, "w") as f:
-            json.dump(self.social_network, f)
+        with open(filename, "w") as f:
+            json.dump(str(self.social_network), f)
 
     def load(self, filename):
         with open(filename, 'r') as f:
@@ -83,13 +83,7 @@ class PandaSocialNetwork:
 
 
 def main():
-    ivo = Panda("Ivo", "ivo@pandamail.com", "male")
-    rado = Panda("Rado", "rado@pandamail.com", "male")
     network = PandaSocialNetwork()
-    for panda in [ivo, rado]:
-        network.add_panda(panda)
-
-    network.make_friends(ivo, rado)
 
 if __name__ == '__main__':
     main()
