@@ -48,25 +48,23 @@ class PandaSocialNetwork:
             return False
 
     def connection_level(self, panda1, panda2):
-        self.level = 0
-        deque2 = deque()
-        visit = set()
+        visited = set()
+        queue = deque()
+        visited.add(panda1)
+        queue.append((0, panda1))
 
-        deque2.append(panda1)
-        visit.append(panda1)
-        while deque2 != []:
-            for neighb in self.social_network[panda1]:
-                if neighb == panda2:
-                    self.level += 1
-                    return self.level
-                else:
-                    for nei in self.social_network[neighb]:
-                        if nei not in visit:
-                            deque2.append(nei)
-                            if nei != panda2:
-                                visit.append(neighb)
-                                deque2.popleft()
-                                self.level += 1
+        while len(queue) != 0:
+            node_with_lvl = queue.popleft()
+            node = node_with_lvl[1]
+            level = node_with_lvl[0]
+            if node == panda2:
+                return level
+            for neighbour in self.social_network[node]:
+                if neighbour not in visited:
+                    visited.add(neighbour)
+                    queue.append((level + 1, neighbour))
+
+        return -1
 
     def are_connected(self, panda1, panda2):
         if self.level > 0:
