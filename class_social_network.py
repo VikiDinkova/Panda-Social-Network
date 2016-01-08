@@ -3,13 +3,10 @@ from collections import deque
 import json
 
 
-SOCIAL_NETWORK = {}
-
-
 class PandaSocialNetwork:
 
     def __init__(self):
-        self.social_network = {}
+        self.social_network = self.load("social_network.json") # за да работим с предишния network
 
     def add_panda(self, panda):
         if self.has_panda(panda):
@@ -75,11 +72,13 @@ class PandaSocialNetwork:
         pass
 
     def save(self, filename):
-        pass
+        with open(self.filename, "w") as f:
+            json.dump(self.social_network, f)
 
     def load(self, filename):
         with open(filename, 'r') as f:
-            pass
+            data = json.load(f)
+        return data
 
 
 
@@ -94,4 +93,3 @@ def main():
 
 if __name__ == '__main__':
     main()
->>>>>>> 3abde1fa022975772c0015d32ad6854ce5b3ce0a
