@@ -1,4 +1,6 @@
 from panda import Panda
+import json
+
 
 SOCIAL_NETWORK = {}
 
@@ -48,4 +50,5 @@ class PandaSocialNetwork:
         pass
 
     def load(self, filename):
-        pass
+        with open(filename, 'r') as f:
+            pass
