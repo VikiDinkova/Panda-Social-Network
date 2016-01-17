@@ -1,1 +1,16 @@
-"{<panda.Panda object at 0x7f9512eb5630>: [<panda.Panda object at 0x7f9512eb55c0>], <panda.Panda object at 0x7f9512eb55c0>: [<panda.Panda object at 0x7f9512eb5630>]}"
+{
+    "{'_gender': 'male', '_name': 'Ivo', '_email': 'ivo@pandamail.com'}": [
+        {
+            "_gender": "male",
+            "_name": "Rado",
+            "_email": "rado@pandamail.com"
+        }
+    ],
+    "{'_gender': 'male', '_name': 'Rado', '_email': 'rado@pandamail.com'}": [
+        {
+            "_gender": "male",
+            "_name": "Ivo",
+            "_email": "ivo@pandamail.com"
+        }
+    ]
+}

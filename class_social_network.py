@@ -1,12 +1,13 @@
 from panda import Panda
 from collections import deque
 import json
+import ast
 
 
 class PandaSocialNetwork:
 
     def __init__(self):
-        self.social_network = self.load("social_network.json") # за да работим с предишния network
+        self.social_network = self.load("social_network.json")
 
     def add_panda(self, panda):
         if self.has_panda(panda):
@@ -29,7 +30,7 @@ class PandaSocialNetwork:
             if self.are_friends(panda1, panda2):
                 return "Pandas are alredy friends"
             else:
-                self.social_network[panda1].append(panda2)  # не съм сигурен дали е така
+                self.social_network[panda1].append(panda2)
                 self.social_network[panda2].append(panda1)
 
     def are_friends(self, panda1, panda2):
@@ -85,18 +86,45 @@ class PandaSocialNetwork:
         return counter
 
     # TODO fix save method
-    def save(self, filename):
+    def save(self, filename="social_network.json"):
+        net = {}
+        x = []
+        for key in self.social_network:
+            for element in self.social_network[key]:
+                x.append(element.__dict__)
+            net[str(key.__dict__)] = x
+            x = []
         with open(filename, "w") as f:
-            json.dump(str(self.social_network), f)
+            json.dump(net, f, indent=4)
 
-    def load(self, filename):
+    def load(self, filename="social_network.json"):
         with open(filename, 'r') as f:
             data = json.load(f)
-        return data
+
+        return self._from_dict_to_object(data)
+
+    def _from_dict_to_object(self, data):
+        net = []
+        new_social_network = {}
+        for key in data:
+            for element in data[key]:
+                x = Panda(
+                    element["_name"],
+                    element["_email"],
+                    element["_gender"])
+
+                net.append(x)
+            key = ast.literal_eval(key)  # преобразува стринг на дикт
+            new_social_network[Panda(
+                    key["_name"],
+                    key["_email"],
+                    key["_gender"])] = net
+            net = []
+        return new_social_network
 
 
 def main():
     network = PandaSocialNetwork()
-
+    print([str(x)for x in network.social_network])
 if __name__ == '__main__':
     main()
